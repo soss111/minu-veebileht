@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Minu koduleht</title>
+  </head>
+  <body>
+    <h1>Tere tulemast!</h1>
+    <p>See on minu lihtne GitHubi koduleht.</p>
+  </body>
+</html>
