@@ -29,6 +29,15 @@
   <h2>Omniva pakiautomaadid kaardil</h2>
   <div id="kaart"></div>
 
+
+    use Mijora\Omniva\Locations\PickupPoints;
+
+    $omnivaPickupPointsObj = new PickupPoints(); //terminals object
+    
+    //returns array list of terminals or OmnivaException on error
+    $terminals = $omnivaPickupPointsObj->getFilteredLocations('lt', 0, 'Kauno apskr.'); //can be optionally filtered by country code, type, and county
+
+  
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
     // Loo kaart
