@@ -35,6 +35,43 @@
       attribution: '&copy; OpenStreetMap'
     }).addTo(kaart);
 
+    <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Omniva pakiautomaadid</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #kaart { height: 600px; width: 100%; }
+  </style>
+</head>
+<body>
+  <h2>Omniva pakiautomaadid kaardil</h2>
+  <div id="kaart"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const kaart = L.map('kaart').setView([59.437, 24.7536], 7);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap'
+    }).addTo(kaart);
+
+    fetch('https://www.omniva.ee/locations.json')
+      .then(res => res.json())
+      .then(andmed => {
+        andmed.forEach(punkt => {
+          if (punkt.TYPE === 'PA') {
+            L.marker([punkt.Y, punkt.X])
+              .addTo(kaart)
+              .bindPopup(`<strong>${punkt.NAME}</strong><br>${punkt.A0_NAME}, ${punkt.A1_NAME}`);
+          }
+        });
+      });
+  </script>
+</body>
+</html>
+
+
     // Lae Omniva pakiautomaadid
     fetch('https://www.omniva.ee/locations.json')
       .then(res => res.json())
