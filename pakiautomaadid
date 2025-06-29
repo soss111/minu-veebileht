@@ -1,1 +1,47 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="UTF-8">
+  <title>Dünaamiline loetelu</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 8px; }
+    button { margin-left: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Minu loetelu</h2>
+
+  <input type="text" id="uusElement" placeholder="Lisa midagi..." />
+  <button onclick="lisaElement()">Lisa</button>
+
+  <ul id="loetelu">
+    <!-- siia lisatakse elemendid -->
+  </ul>
+
+  <script>
+    function lisaElement() {
+      const sisend = document.getElementById("uusElement");
+      const tekst = sisend.value.trim();
+
+      if (tekst === "") return;
+
+      const loetelu = document.getElementById("loetelu");
+      const el = document.createElement("li");
+      el.textContent = tekst;
+
+      // Lisa eemaldamisnupp
+      const kustuta = document.createElement("button");
+      kustuta.textContent = "✖";
+      kustuta.onclick = () => loetelu.removeChild(el);
+
+      el.appendChild(kustuta);
+      loetelu.appendChild(el);
+
+      sisend.value = ""; // tühjenda väli
+    }
+  </script>
+</body>
+</html>
 
